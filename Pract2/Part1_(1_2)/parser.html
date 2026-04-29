@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Парсер JSON</title>
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Результат парсингу JSON:</h2>
+    
+    <table id="json-table">
+        <thead>
+            <tr>
+                <th>Ключ</th>
+                <th>Значення</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+
+    <script>
+        const jsonString = '{"назва гри": "Clair Obscur: Expedition 33", "рік виходу": 2025, "жанри": ["JRPG", "Action"], "GOTY": true}';
+
+        const parsedObject = JSON.parse(jsonString);
+        
+        const tableBody = document.getElementById('table-body');
+
+        for (let key in parsedObject) {
+
+            const row = document.createElement('tr');
+            
+            const keyCell = document.createElement('td');
+            keyCell.textContent = key;
+            
+            const valueCell = document.createElement('td');
+            
+            if (Array.isArray(parsedObject[key])) {
+                valueCell.textContent = parsedObject[key].join(', ');
+            } else {
+                valueCell.textContent = parsedObject[key];
+            }
+            
+            row.appendChild(keyCell);
+            row.appendChild(valueCell);
+            
+            tableBody.appendChild(row);
+        }
+    </script>
+</body>
+</html>
