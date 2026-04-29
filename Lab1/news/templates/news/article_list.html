@@ -1,0 +1,9 @@
+<h1>Список статей</h1>
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="/article/{{ article.id }}/">{{ article.title }}</a> 
+            (Автор: <a href="/author/{{ article.author.username }}/">{{ article.author.username }}</a>)
+        </li>
+    {% endfor %}
+</ul>

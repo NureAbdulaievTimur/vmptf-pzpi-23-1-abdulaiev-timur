@@ -1,0 +1,13 @@
+<h1>Статті автора: {{ author.username }}</h1>
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="/article/{{ article.id }}/">{{ article.title }}</a> 
+            - {{ article.pub_date }}
+        </li>
+    {% empty %}
+        <li>У цього автора ще немає статей.</li>
+    {% endfor %}
+</ul>
+<br>
+<a href="/">Назад до списку</a>
